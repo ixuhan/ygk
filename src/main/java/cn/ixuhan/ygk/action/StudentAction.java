@@ -7,6 +7,8 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.Resource;
+
 /**
  * Created with Hank.
  * User: Hank
@@ -17,14 +19,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Results({@Result(name = "success", location = "/index.jsp")})
 public class StudentAction extends BaseSupport {
 
-    @Autowired
-    private StudentImpl studentimpl;
+    @Resource(name="studentImpl")
+    private StudentImpl studentImpl;
 
     @Action(value = "test")
     public String helloWorld() {
         System.out.println("action success");
-        String id = getRequest().getParameter("id");
-        Student student = studentimpl.getStudent(Integer.valueOf(id));
+        //String id = getRequest().getParameter("id");
+        Student student = studentImpl.getStudent(1);
         System.out.println(student);
         return SUCCESS;
     }
