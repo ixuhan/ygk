@@ -4,6 +4,8 @@ import cn.ixuhan.ygk.dao.StudentDAO;
 import cn.ixuhan.ygk.model.Student;
 import cn.ixuhan.ygk.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * Created with Hank.
@@ -12,12 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
  * Time: 19:27
  * Des:
  */
-public class StudentImpl implements StudentService{
 
-    @Autowired
-    private StudentDAO studentDAO;
+public class StudentImpl{
+
+
 
     public Student getStudent(int id) {
-        return studentDAO.select(id);
+        return new Student(6,"6",6,"6");
     }
 }
