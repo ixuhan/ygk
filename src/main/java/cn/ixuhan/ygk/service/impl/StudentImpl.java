@@ -15,11 +15,13 @@ import org.springframework.stereotype.Service;
  * Des:
  */
 
+@Component("studentImpl")
 public class StudentImpl{
 
-
+    @Autowired
+    private StudentDAO studentDAO;
 
     public Student getStudent(int id) {
-        return new Student(6,"6",6,"6");
+        return studentDAO.select(id);
     }
 }

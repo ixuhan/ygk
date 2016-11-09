@@ -19,12 +19,12 @@ import javax.annotation.Resource;
 @Results({@Result(name = "success", location = "/index.jsp")})
 public class StudentAction extends BaseSupport {
 
-    @Resource(name="studentImpl")
+    @Autowired
     private StudentImpl studentImpl;
 
     @Action(value = "test")
     public String helloWorld() {
-        System.out.println("action success");
+        System.out.println("action success1");
         //String id = getRequest().getParameter("id");
         Student student = studentImpl.getStudent(1);
         System.out.println(student);
