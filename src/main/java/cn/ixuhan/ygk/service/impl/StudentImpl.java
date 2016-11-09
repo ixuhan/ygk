@@ -22,6 +22,6 @@ public class StudentImpl{
     private StudentDAO studentDAO;
 
     public Student getStudent(int id) {
-        return studentDAO.select(id);
+        return studentDAO.selectStudent(id);
     }
 }

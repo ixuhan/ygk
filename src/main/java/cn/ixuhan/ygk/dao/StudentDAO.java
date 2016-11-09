@@ -1,6 +1,7 @@
 package cn.ixuhan.ygk.dao;
 
 import cn.ixuhan.ygk.model.Student;
+import org.springframework.stereotype.Component;
 
 /**
  * Created with Hank.
@@ -9,13 +10,11 @@ import cn.ixuhan.ygk.model.Student;
  * Time: 19:24
  * Des:
  */
+@Component("studentDAO")
 public interface StudentDAO {
 
-    int delete(int id);
 
-    int insert(Student student);
 
-    Student select(int id);
+    Student selectStudent(int id);
 
-    int update(Student student);
 }
