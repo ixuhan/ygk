@@ -53,27 +53,22 @@ public class WechatAction extends BaseSupport {
         String code = getRequest().getParameter("code");
         System.out.println("获取到的code为"+code);
         String url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+APPID+"&secret="+SECRET+"&code="+code+"&grant_type=authorization_code";
-        System.out.println("appid = " + APPID + "sercet = " + SECRET);
         try {
             Document doc = Jsoup.connect(url).get();
             //返回网页内容
             String html = doc.body().html().toString();
-            System.out.println("第一个html内容为"+html);
             Gson gson = new Gson();
             Map map = gson.fromJson(html, HashMap.class);
             //解析网页拿到access_token
             String access_token = map.get("access_token").toString();
             String openid = map.get("openid").toString();
 
-            System.out.println("access_token = " + access_token + "openid = " + openid);
             //继续访问
             String url2 = "https://api.weixin.qq.com/sns/userinfo?access_token="+access_token+"&openid="+openid+"&lang=zh_CN";
             doc = Jsoup.connect(url2).get();
             html = doc.body().html().toString();
-            System.out.println("第二个html内容为"+html);
             map = gson.fromJson(html, HashMap.class);
             String nickname = map.get("nickname").toString();
-            System.out.println("nickname = " + nickname);
 
         }catch (IOException io){
             System.out.println(io.getMessage());
