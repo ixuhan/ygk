@@ -21,25 +21,26 @@ import java.util.Properties;
  */
 public class WechatAction extends BaseSupport {
     private static String APPID;
-    private static String SERCET;
+    private static String SECRET;
 
     //初始化获取appid和secret
     static {
         //建立配置容器
         Properties properties = new Properties();
         //读取配置文件
-        InputStream inputStream = Object.class.getResourceAsStream("/wechat.properties");
+        InputStream inputStream = WechatAction.class.getResourceAsStream("/wechat.properties");
         try {
             //把读取到的配置文件加载到配置容器
             properties.load(inputStream);
             //获取APPID
             APPID = properties.get("wechat.APPID").toString();
             //获取SERCET
-            SERCET = properties.get("wechat.SECRET").toString();
+            SECRET = properties.get("wechat.SECRET").toString();
         }catch (IOException io){
             System.out.println(io.getMessage());
             System.out.println("cant load wechat.properties");
         }
+
     }
 
     /**
@@ -48,13 +49,14 @@ public class WechatAction extends BaseSupport {
      */
     @Action(value = "weChatInit", results = {@Result(name = "success", location = "/index.jsp")})
     public String weChatInit() {
+        System.out.println("进入了weChatInit");
         String code = getRequest().getParameter("code");
-        String url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+APPID+"&secret="+SERCET+"&code="+code+"&grant_type=authorization_code";
-        System.out.println("appid = " + APPID + "sercet = " + SERCET);
+        System.out.println("获取到的code为"+code);
+        String url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+APPID+"&secret="+SECRET+"&code="+code+"&grant_type=authorization_code";
         try {
             Document doc = Jsoup.connect(url).get();
             //返回网页内容
-            String html = doc.body().toString();
+            String html = doc.body().html().toString();
             Gson gson = new Gson();
             Map map = gson.fromJson(html, HashMap.class);
             //解析网页拿到access_token
@@ -64,10 +66,9 @@ public class WechatAction extends BaseSupport {
             //继续访问
             String url2 = "https://api.weixin.qq.com/sns/userinfo?access_token="+access_token+"&openid="+openid+"&lang=zh_CN";
             doc = Jsoup.connect(url2).get();
-            html = doc.body().toString();
+            html = doc.body().html().toString();
             map = gson.fromJson(html, HashMap.class);
             String nickname = map.get("nickname").toString();
-            System.out.println("nickname = " + nickname);
 
         }catch (IOException io){
             System.out.println(io.getMessage());
