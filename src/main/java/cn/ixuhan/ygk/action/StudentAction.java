@@ -17,11 +17,22 @@ import javax.annotation.Resource;
  * Time: 17:40
  * Des: This is a test class
  */
-@Results({@Result(name = "success", location = "/index.jsp")})
+@Results({@Result(name = "success", location = "index.jsp")})
 public class StudentAction extends BaseSupport {
 
     @Autowired
     private StudentImpl studentImpl;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    private int id;
+
 
     @Action(value = "test")
     public String helloWorld() {
