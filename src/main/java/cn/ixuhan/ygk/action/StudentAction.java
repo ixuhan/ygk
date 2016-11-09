@@ -5,6 +5,7 @@ import cn.ixuhan.ygk.service.impl.StudentImpl;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
+import org.omg.CORBA.INTERNAL;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.Resource;
@@ -25,9 +26,17 @@ public class StudentAction extends BaseSupport {
     @Action(value = "test")
     public String helloWorld() {
         System.out.println("action success1");
-        //String id = getRequest().getParameter("id");
-        Student student = studentImpl.getStudent(1);
+        String id = getRequest().getParameter("id");
+        Student student = studentImpl.getStudent(Integer.valueOf(id));
+        getRequest().setAttribute("student",student);
         System.out.println(student);
         return SUCCESS;
     }
+
+    @Action(value = "test1")
+    public String helloWorld1() {
+        System.out.println(getRequest().getAttribute("student"));
+        return SUCCESS;
+    }
+
 }

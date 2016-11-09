@@ -35,7 +35,7 @@
         <!-- 自动使简单类名成为别名 -->
         <property name="typeAliasesPackage" value="cn.ixuhan.ygk.model"/>
         <!-- 指定mapper位置 -->
-        <property name="mapperLocations" value="classpath*:cn/ixuhan/ygk/dao/*.xml"/>
+        <property name="mapperLocations" value="classpath*:mapping/*.xml"/>
     </bean>
 
     <!-- mybatis-spring 自动扫描dao,目的是不需要注册映射器 -->
