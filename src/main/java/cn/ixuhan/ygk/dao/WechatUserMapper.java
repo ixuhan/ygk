@@ -2,11 +2,10 @@ package cn.ixuhan.ygk.dao;
 
 import cn.ixuhan.ygk.model.WechatUser;
 import cn.ixuhan.ygk.model.WechatUserExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
 
-@Component("wechatUserMapper")
+import java.util.List;
+
 public interface WechatUserMapper {
     int countByExample(WechatUserExample example);
 

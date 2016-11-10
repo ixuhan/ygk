@@ -1,6 +1,6 @@
 package cn.ixuhan.ygk.service;
 
-import cn.ixuhan.ygk.model.Student;
+import cn.ixuhan.ygk.model.WechatUser;
 
 /**
  * Created with Hank.
@@ -9,6 +9,6 @@ import cn.ixuhan.ygk.model.Student;
  * Time: 19:26
  * Des:
  */
-public interface StudentService {
-    public Student getStudent(int id);
+public interface WechatService {
+    public int insertInto(WechatUser wechatUser);
 }

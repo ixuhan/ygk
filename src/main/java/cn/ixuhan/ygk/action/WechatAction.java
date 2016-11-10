@@ -1,10 +1,13 @@
 package cn.ixuhan.ygk.action;
 
+import cn.ixuhan.ygk.model.WechatUser;
+import cn.ixuhan.ygk.service.WechatService;
 import com.google.gson.Gson;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,6 +23,9 @@ import java.util.Properties;
  * Des:微信基础action，用于与微信后台通讯
  */
 public class WechatAction extends BaseSupport {
+    @Autowired
+    private WechatService wechatService;
+
     private static String APPID;
     private static String SECRET;
 
@@ -76,5 +82,14 @@ public class WechatAction extends BaseSupport {
         }
 
         return SUCCESS;
+    }
+
+
+    //测试
+    @Action(value = "test",results = {@Result(name = "success", location = "/index.jsp")})
+    public String test(){
+
+        wechatService.insertInto(new WechatUser("10","10","10","10","10","10","10","10","10","10"));
+        return "success";
     }
 }

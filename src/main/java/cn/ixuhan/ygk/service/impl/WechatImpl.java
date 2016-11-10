@@ -1,9 +1,8 @@
 package cn.ixuhan.ygk.service.impl;
 
-import cn.ixuhan.ygk.dao.StudentDAO;
 import cn.ixuhan.ygk.dao.WechatUserMapper;
-import cn.ixuhan.ygk.model.Student;
 import cn.ixuhan.ygk.model.WechatUser;
+import cn.ixuhan.ygk.service.WechatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,18 +14,11 @@ import org.springframework.stereotype.Component;
  * Des:
  */
 
-@Component("studentImpl")
-public class StudentImpl{
+@Component("wechatService")
+public class WechatImpl implements WechatService{
 
-    @Autowired
-    private StudentDAO studentDAO;
     @Autowired
     private WechatUserMapper wechatUserMapper;
-
-    public Student getStudent(int id) {
-
-        return studentDAO.selectStudent(id);
-    }
 
     public int insertInto(WechatUser wechatUser){
         return wechatUserMapper.insert(wechatUser);
