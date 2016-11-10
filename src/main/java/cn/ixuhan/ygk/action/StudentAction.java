@@ -1,6 +1,7 @@
 package cn.ixuhan.ygk.action;
 
 import cn.ixuhan.ygk.model.Student;
+import cn.ixuhan.ygk.model.WechatUser;
 import cn.ixuhan.ygk.service.impl.StudentImpl;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
@@ -46,7 +47,7 @@ public class StudentAction extends BaseSupport {
 
     @Action(value = "test1")
     public String helloWorld1() {
-        System.out.println(getRequest().getAttribute("student"));
+        studentImpl.insertInto(new WechatUser("2","1","1","1","1","1","1","1","1","1"));
         return SUCCESS;
     }
 

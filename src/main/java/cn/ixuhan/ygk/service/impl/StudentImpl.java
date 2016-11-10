@@ -1,11 +1,11 @@
 package cn.ixuhan.ygk.service.impl;
 
 import cn.ixuhan.ygk.dao.StudentDAO;
+import cn.ixuhan.ygk.dao.WechatUserMapper;
 import cn.ixuhan.ygk.model.Student;
-import cn.ixuhan.ygk.service.StudentService;
+import cn.ixuhan.ygk.model.WechatUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 /**
  * Created with Hank.
@@ -20,8 +20,15 @@ public class StudentImpl{
 
     @Autowired
     private StudentDAO studentDAO;
+    @Autowired
+    private WechatUserMapper wechatUserMapper;
 
     public Student getStudent(int id) {
+
         return studentDAO.selectStudent(id);
+    }
+
+    public int insertInto(WechatUser wechatUser){
+        return wechatUserMapper.insert(wechatUser);
     }
 }
