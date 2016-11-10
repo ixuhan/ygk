@@ -47,7 +47,7 @@ public class StudentAction extends BaseSupport {
 
     @Action(value = "test1")
     public String helloWorld1() {
-        studentImpl.insertInto(new WechatUser("2","1","1","1","1","1","1","1","1","1"));
+        studentImpl.insertInto(new WechatUser("3","1","1","1","1","1","1","1","1","1"));
         return SUCCESS;
     }
 
